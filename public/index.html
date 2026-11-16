@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore college clubs, events and student activities.">
+    <title>ClubSphere | College Clubs</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@300;400;500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar container">
+            <a class="logo" href="index.html">
+                <img src="logo.svg" alt="ClubSphere Logo" class="logo-icon" width="38" height="38">
+                <span class="logo-text">Club<span class="logo-highlight">Sphere</span></span>
+            </a>
+            <button class="menu-button" id="menuButton" aria-label="Toggle navigation">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#clubs">Clubs</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero-grid-wrapper">
+                <div class="hero-text-side">
+                    <h1>Where passion meets purpose. <span>Shape your story.</span></h1>
+                    <blockquote class="hero-quote">
+                        “From code to culture, sports arena to cinematic lens — this campus is your canvas.”
+                    </blockquote>
+                    <p class="hero-subtext">ClubSphere unites all official IIIT Kota student clubs in one interactive space. Discover upcoming events, register with your official college email, and connect with fellow creators and innovators.</p>
+                </div>
+
+                <div class="hero-visual-side">
+                    <div class="campus-plaque">
+                        <div class="campus-tape"></div>
+                        <div class="campus-image-frame">
+                            <img src="images/iiit-kota-campus.webp" alt="IIIT Kota Campus Building" class="campus-photo" loading="lazy">
+                            <div class="campus-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section container" id="clubs">
+            <div class="section-heading">
+                <p class="eyebrow">GET INVOLVED</p>
+                <h2>Our college clubs</h2>
+                <p>Choose a club to learn more, see its activities and register.</p>
+            </div>
+            <div class="club-grid" id="clubContainer"></div>
+        </section>
+
+        <section class="section events-section" id="events">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">SAVE THE DATE</p>
+                    <h2>Upcoming events</h2>
+                </div>
+                <div class="event-grid" id="eventContainer"></div>
+            </div>
+        </section>
+
+        <section class="section container about-section" id="about">
+            <div>
+                <p class="eyebrow">ABOUT US</p>
+                <h2>One campus, many interests.</h2>
+            </div>
+            <p>ClubSphere is a simple student portal that brings college clubs and their activities together. Explore opportunities, meet teammates and take part in campus life.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="logo.svg" alt="ClubSphere Emblem" width="30" height="30" class="footer-logo">
+                <span>Club<strong class="logo-highlight">Sphere</strong></span>
+            </div>
+            <p class="footer-motive">Find your people. Follow your passion. Connecting campus technical, sports, esports &amp; cultural clubs.</p>
+            <p class="footer-copy">© 2026 ClubSphere | IIIT Kota Clubs Portal</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

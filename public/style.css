@@ -1,0 +1,1519 @@
+/* ==========================================================================
+   ClubSphere – Chalkboard Art & Campus Slate Design System
+   ========================================================================== */
+
+:root {
+    /* Chalkboard Canvas Surfaces */
+    --board-bg: #18201a;               /* Deep slate dark forest chalkboard */
+    --board-card: #222b24;             /* Elevated blackboard card surface */
+    --board-card-hover: #27332a;       /* Active chalkboard surface */
+    --board-recessed: #131a15;         /* Recessed surface for inputs & meta */
+    --board-border: rgba(245, 243, 235, 0.22); /* Chalk sketched border */
+    --board-border-dashed: rgba(245, 243, 235, 0.35);
+    --board-wood: #5a3825;             /* Warm vintage wood frame trim */
+    --board-wood-dark: #3a2214;
+
+    /* Chalk Pigments */
+    --chalk-white: #f5f3eb;            /* Warm calcium chalk white */
+    --chalk-muted: #b0bcaf;            /* Smudged/soft chalk dust grey-green */
+    --chalk-yellow: #ffd166;           /* Schoolroom chalk yellow */
+    --chalk-yellow-hover: #ffdf85;
+    --chalk-mint: #6ee7b7;             /* Fresh chalk mint cyan */
+    --chalk-mint-hover: #9bf5d1;
+    --chalk-coral: #ff7b72;            /* Chalk coral rose (danger/withdraw) */
+    --chalk-coral-hover: #ff9992;
+    --chalk-blue: #93c5fd;             /* Sky chalk blue */
+    --chalk-lavender: #c4b5fd;         /* Soft chalk lavender */
+
+    /* Typography */
+    --font-display: 'Patrick Hand', cursive, sans-serif;
+    --font-accent: 'Caveat', cursive, sans-serif;
+    --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Transitions */
+    --transition-snappy: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ==========================================================================
+   Global Reset & Base Settings
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--chalk-white);
+    background-color: var(--board-bg);
+    /* Subtle realistic multi-layer chalk dust texture */
+    background-image: 
+        radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.04) 0%, transparent 45%),
+        radial-gradient(circle at 82% 78%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.015) 0%, transparent 65%);
+    line-height: 1.65;
+    min-height: 100vh;
+}
+
+::selection {
+    background: rgba(255, 209, 102, 0.35);
+    color: var(--chalk-yellow);
+}
+
+.container {
+    width: min(1160px, 92%);
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Header & Navigation – Vintage Board Top Frame
+   ========================================================================== */
+.site-header {
+    background: #141b16;
+    border-bottom: 4px solid var(--board-wood);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45), inset 0 -1px 0 var(--board-wood-dark);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+}
+
+.navbar {
+    min-height: 72px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: var(--transition-snappy);
+}
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+    display: block;
+    filter: drop-shadow(0 0 8px rgba(255, 209, 102, 0.45));
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+}
+
+.logo-text {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: var(--chalk-white);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.logo-highlight {
+    color: var(--chalk-yellow);
+    text-shadow: 0 0 12px rgba(255, 209, 102, 0.45);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.logo:hover .logo-icon {
+    transform: rotate(35deg) scale(1.12);
+    filter: drop-shadow(0 0 14px rgba(110, 231, 183, 0.65));
+}
+
+.logo:hover .logo-highlight {
+    color: var(--chalk-mint);
+    text-shadow: 0 0 16px rgba(110, 231, 183, 0.6);
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links a {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--chalk-white);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding: 4px 6px;
+    transition: var(--transition-smooth);
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--chalk-yellow);
+    box-shadow: 0 0 8px rgba(255, 209, 102, 0.5);
+    border-radius: 2px;
+    transition: var(--transition-smooth);
+}
+
+.nav-links a:hover {
+    color: var(--chalk-yellow);
+    transform: translateY(-2px);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.back-link {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--chalk-mint);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border: 2px dashed rgba(110, 231, 183, 0.5);
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    background: rgba(110, 231, 183, 0.06);
+    box-shadow: 0 2px 0 var(--chalk-mint);
+    transition: var(--transition-snappy);
+}
+
+.back-link:hover {
+    background: var(--chalk-mint);
+    color: #141b16;
+    border-color: var(--chalk-mint);
+    box-shadow: 0 4px 0 #45a882, 0 0 16px rgba(110, 231, 183, 0.45);
+    transform: translateY(-2px);
+}
+
+.menu-button {
+    display: none;
+    border: 2px solid var(--chalk-yellow);
+    background: rgba(255, 209, 102, 0.1);
+    color: var(--chalk-yellow);
+    font-size: 22px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition-snappy);
+}
+
+.menu-button:hover {
+    background: var(--chalk-yellow);
+    color: #141b16;
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Hero Section – The Campus Blackboard & Showcase
+   ========================================================================== */
+.hero {
+    background: linear-gradient(180deg, #161e18 0%, var(--board-bg) 100%);
+    padding: 70px 0 65px;
+    position: relative;
+    border-bottom: 2px dashed rgba(245, 243, 235, 0.18);
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 209, 102, 0.4), transparent);
+}
+
+.hero-grid-wrapper {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 46px;
+    align-items: center;
+}
+
+.hero-text-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.eyebrow {
+    font-family: var(--font-display);
+    color: var(--chalk-yellow);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 5px 18px;
+    margin-bottom: 16px;
+    border: 1.5px dashed rgba(255, 209, 102, 0.6);
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    background: rgba(255, 209, 102, 0.08);
+    box-shadow: 0 0 12px rgba(255, 209, 102, 0.15);
+}
+
+.hero h1 {
+    font-family: var(--font-display);
+    color: var(--chalk-white);
+    font-size: clamp(36px, 4.2vw, 56px);
+    line-height: 1.12;
+    margin-bottom: 12px;
+    text-shadow: 0 0 14px rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.8px;
+}
+
+.hero h1 span {
+    color: var(--chalk-yellow);
+    text-decoration: underline wavy var(--chalk-mint);
+    text-underline-offset: 8px;
+    text-shadow: 0 0 18px rgba(255, 209, 102, 0.45);
+}
+
+.hero-quote {
+    font-family: var(--font-accent);
+    font-size: 1.55rem;
+    color: var(--chalk-yellow);
+    line-height: 1.4;
+    margin: 6px 0 16px;
+    padding-left: 18px;
+    border-left: 3.5px dashed var(--chalk-yellow);
+    text-shadow: 0 0 10px rgba(255, 209, 102, 0.35);
+}
+
+.hero-subtext {
+    color: var(--chalk-muted);
+    font-size: 1.08rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+    max-width: 600px;
+}
+
+/* Shaped Campus Plaque & Frame */
+.hero-visual-side {
+    display: flex;
+    justify-content: center;
+}
+
+.campus-plaque {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    background: #19221c;
+    border: 2.5px solid var(--board-border);
+    outline: 2px dashed rgba(255, 209, 102, 0.45);
+    outline-offset: 8px;
+    border-radius: 36px;
+    padding: 12px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), 0 0 25px rgba(255, 209, 102, 0.12);
+    transition: var(--transition-smooth);
+}
+
+.campus-plaque:hover {
+    transform: translateY(-6px) rotate(-1deg);
+    outline-color: var(--chalk-mint);
+    box-shadow: 0 26px 55px rgba(0, 0, 0, 0.65), 0 0 32px rgba(110, 231, 183, 0.25);
+}
+
+.campus-tape {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 24px;
+    background: rgba(255, 209, 102, 0.28);
+    border: 1px dashed var(--chalk-yellow);
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+    z-index: 5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.campus-image-frame {
+    position: relative;
+    width: 100%;
+    height: 310px;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1.5px solid rgba(245, 243, 235, 0.2);
+    background: #131915;
+}
+
+.campus-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.6s ease;
+}
+
+.campus-plaque:hover .campus-photo {
+    transform: scale(1.06);
+    filter: brightness(1.06) saturate(1.08);
+}
+
+.campus-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(24, 32, 26, 0.05) 0%, rgba(24, 32, 26, 0.35) 100%);
+}
+
+.campus-caption {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+    padding: 4px 8px;
+}
+
+.caption-icon {
+    font-size: 28px;
+}
+
+.caption-text strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--chalk-white);
+    letter-spacing: 0.5px;
+}
+
+.caption-text small {
+    font-size: 0.88rem;
+    color: var(--chalk-muted);
+}
+
+/* ==========================================================================
+   BUTTONS – Chalkboard Framed Buttons with Tactical Depth & Effects
+   ========================================================================== */
+.button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-size: 1.18rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 10px 22px;
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: var(--transition-snappy);
+    user-select: none;
+}
+
+.button:focus-visible {
+    outline: 2px dashed var(--chalk-yellow);
+    outline-offset: 4px;
+}
+
+/* 1. Yellow Chalk Button (Explore, View & Register, Primary actions) */
+.button-yellow {
+    background: rgba(255, 209, 102, 0.08);
+    border: 2px solid var(--chalk-yellow);
+    color: var(--chalk-yellow);
+    box-shadow: 0 3px 0 var(--chalk-yellow), 0 0 12px rgba(255, 209, 102, 0.25);
+    text-shadow: 0 0 6px rgba(255, 209, 102, 0.3);
+}
+
+.button-yellow:hover {
+    background: var(--chalk-yellow);
+    color: #151c17;
+    border-color: var(--chalk-yellow);
+    box-shadow: 0 5px 0 #cfa330, 0 0 24px rgba(255, 209, 102, 0.55);
+    transform: translateY(-3px);
+    text-shadow: none;
+}
+
+.button-yellow:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 #cfa330, 0 0 10px rgba(255, 209, 102, 0.3);
+}
+
+/* 2. Blue / Mint Chalk Button (Submit registration, View attendees) */
+.button-blue {
+    background: rgba(110, 231, 183, 0.08);
+    border: 2px solid var(--chalk-mint);
+    color: var(--chalk-mint);
+    box-shadow: 0 3px 0 var(--chalk-mint), 0 0 12px rgba(110, 231, 183, 0.25);
+    text-shadow: 0 0 6px rgba(110, 231, 183, 0.3);
+}
+
+.button-blue:hover {
+    background: var(--chalk-mint);
+    color: #151c17;
+    border-color: var(--chalk-mint);
+    box-shadow: 0 5px 0 #45a882, 0 0 24px rgba(110, 231, 183, 0.55);
+    transform: translateY(-3px);
+    text-shadow: none;
+}
+
+.button-blue:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 #45a882, 0 0 10px rgba(110, 231, 183, 0.3);
+}
+
+/* 3. Danger / Withdraw Coral Chalk Button */
+.button-danger {
+    background: rgba(255, 123, 114, 0.08);
+    border: 2px solid var(--chalk-coral);
+    color: var(--chalk-coral);
+    box-shadow: 0 3px 0 var(--chalk-coral), 0 0 12px rgba(255, 123, 114, 0.25);
+    text-shadow: 0 0 6px rgba(255, 123, 114, 0.3);
+}
+
+.button-danger:hover {
+    background: var(--chalk-coral);
+    color: #151c17;
+    border-color: var(--chalk-coral);
+    box-shadow: 0 5px 0 #bd4f47, 0 0 24px rgba(255, 123, 114, 0.55);
+    transform: translateY(-3px);
+    text-shadow: none;
+}
+
+.button-danger:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 #bd4f47, 0 0 10px rgba(255, 123, 114, 0.3);
+}
+
+/* 4. Light / Cancel Chalk Button */
+.button-light {
+    background: rgba(245, 243, 235, 0.05);
+    border: 2px dashed rgba(245, 243, 235, 0.45);
+    color: var(--chalk-white);
+    box-shadow: 0 3px 0 rgba(245, 243, 235, 0.25);
+    margin-left: 8px;
+}
+
+.button-light:hover {
+    background: rgba(245, 243, 235, 0.16);
+    border-color: var(--chalk-white);
+    color: var(--chalk-white);
+    box-shadow: 0 5px 0 rgba(245, 243, 235, 0.4), 0 0 18px rgba(245, 243, 235, 0.2);
+    transform: translateY(-3px);
+}
+
+.button-light:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 rgba(245, 243, 235, 0.3);
+}
+
+/* ==========================================================================
+   Sections & General Headings
+   ========================================================================== */
+.section {
+    padding: 70px 0;
+    position: relative;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-heading h2,
+.about-section h2,
+.club-section h2 {
+    font-family: var(--font-display);
+    color: var(--chalk-white);
+    font-size: 38px;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+    position: relative;
+    display: inline-block;
+}
+
+.section-heading h2::after,
+.club-section h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--chalk-yellow);
+    margin: 6px auto 0;
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(255, 209, 102, 0.5);
+}
+
+.club-section h2::after {
+    margin: 6px 0 0;
+}
+
+.section-heading > p:last-child {
+    color: var(--chalk-muted);
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+/* ==========================================================================
+   CARDS – Chalkboard Plaque Surfaces & Micro-interactions
+   ========================================================================== */
+.club-card,
+.event-card,
+.info-card,
+.person-card,
+.form-card,
+.students-card {
+    background: var(--board-card);
+    border: 2px solid var(--board-border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 0 20px rgba(255, 255, 255, 0.015);
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.club-card:hover,
+.event-card:hover,
+.person-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 209, 102, 0.55);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 20px rgba(255, 209, 102, 0.15);
+}
+
+/* ==========================================================================
+   Homepage – Clubs Grid & Cards
+   ========================================================================== */
+.club-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+}
+
+.club-card {
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.club-card-image {
+    display: block;
+    width: calc(100% + 48px);
+    height: 185px;
+    margin: -24px -24px 20px;
+    object-fit: cover;
+    background: #171f1a;
+    border-bottom: 2px dashed rgba(245, 243, 235, 0.2);
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.club-card:hover .club-card-image {
+    transform: scale(1.04);
+    filter: brightness(1.08) saturate(1.1);
+}
+
+.club-icon {
+    width: 62px;
+    height: 62px;
+    margin: -40px auto 14px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #1b241e;
+    border: 2px dashed var(--chalk-yellow);
+    box-shadow: 0 0 14px rgba(255, 209, 102, 0.3), 0 4px 10px rgba(0, 0, 0, 0.4);
+    font-size: 30px;
+    position: relative;
+    z-index: 2;
+    transition: var(--transition-snappy);
+}
+
+.club-card:hover .club-icon {
+    transform: rotate(10deg) scale(1.1);
+    border-color: var(--chalk-mint);
+    box-shadow: 0 0 20px rgba(110, 231, 183, 0.4);
+}
+
+.club-card h3 {
+    font-family: var(--font-display);
+    color: var(--chalk-white);
+    font-size: 26px;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
+}
+
+.club-category {
+    font-family: var(--font-display);
+    color: var(--chalk-yellow);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    display: inline-block;
+    align-self: center;
+    padding: 3px 14px;
+    border: 1.5px dashed rgba(255, 209, 102, 0.5);
+    border-radius: 20px;
+    background: rgba(255, 209, 102, 0.08);
+}
+
+.club-card p {
+    color: var(--chalk-muted);
+    font-size: 0.98rem;
+    min-height: 64px;
+    margin-bottom: 22px;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.club-card .button {
+    align-self: center;
+    width: 85%;
+}
+
+/* ==========================================================================
+   Homepage – Events Section
+   ========================================================================== */
+.events-section {
+    background: linear-gradient(180deg, #151d18 0%, #1a231d 100%);
+    border-top: 2px dashed rgba(245, 243, 235, 0.18);
+    border-bottom: 2px dashed rgba(245, 243, 235, 0.18);
+}
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.event-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-card h3 {
+    font-family: var(--font-display);
+    color: var(--chalk-yellow);
+    font-size: 25px;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    text-shadow: 0 0 8px rgba(255, 209, 102, 0.25);
+}
+
+.event-card p {
+    color: var(--chalk-muted);
+    font-size: 0.98rem;
+    margin-top: 4px;
+    line-height: 1.6;
+}
+
+.event-card p strong {
+    color: var(--chalk-white);
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+}
+
+.event-card .button {
+    margin-top: 18px;
+    align-self: flex-start;
+}
+
+/* ==========================================================================
+   Homepage – About Section
+   ========================================================================== */
+.about-section {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 36px;
+    align-items: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.about-section > p {
+    color: var(--chalk-muted);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid var(--chalk-mint);
+    padding: 18px 24px;
+    border-radius: 0 12px 12px 0;
+}
+
+/* ==========================================================================
+   Individual Club Page Layout – Rearranged & Upgraded
+   ========================================================================== */
+.club-page {
+    padding-top: 25px;
+    padding-bottom: 75px;
+}
+
+.club-header-top {
+    margin-bottom: 20px;
+}
+
+.club-banner {
+    background: linear-gradient(135deg, #1a251e 0%, #243228 100%);
+    border: 2.5px solid var(--board-border);
+    outline: 2px dashed rgba(255, 209, 102, 0.4);
+    outline-offset: 6px;
+    border-radius: 22px;
+    padding: 38px 42px;
+    margin: 10px 0 38px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(255, 255, 255, 0.02);
+    position: relative;
+    overflow: hidden;
+}
+
+.club-banner-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.club-pulse-tag {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--chalk-mint);
+    border: 1px solid var(--chalk-mint);
+    background: rgba(110, 231, 183, 0.1);
+    padding: 3px 12px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.club-pulse-tag::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--chalk-mint);
+    box-shadow: 0 0 8px var(--chalk-mint);
+}
+
+.club-banner h1 {
+    font-family: var(--font-display);
+    color: var(--chalk-white);
+    font-size: clamp(38px, 5.2vw, 54px);
+    letter-spacing: 0.8px;
+    margin: 4px 0 10px;
+    text-shadow: 0 0 14px rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.club-tagline {
+    font-family: var(--font-accent);
+    color: var(--chalk-yellow);
+    font-size: 1.65rem;
+    line-height: 1.35;
+    margin-bottom: 22px;
+    text-shadow: 0 0 12px rgba(255, 209, 102, 0.35);
+}
+
+.club-quick-stats {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding-top: 18px;
+    border-top: 1.5px dashed rgba(245, 243, 235, 0.18);
+}
+
+.stat-pill {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--chalk-muted);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(245, 243, 235, 0.2);
+    border-radius: 12px;
+    padding: 6px 16px;
+}
+
+.stat-pill strong {
+    color: var(--chalk-white);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--chalk-yellow);
+    margin-right: 4px;
+}
+
+/* Section Title with Badge Icons */
+.section-badge-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.section-icon {
+    font-size: 28px;
+}
+
+.section-badge-title.center-title {
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.section-sub {
+    color: var(--chalk-muted);
+    font-size: 1.05rem;
+    max-width: 680px;
+    margin: 8px auto 0;
+}
+
+/* Core Narrative: Two Column Split */
+.club-narrative-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 45px;
+}
+
+.club-narrative-card {
+    margin: 0;
+}
+
+.narrative-body {
+    padding: 28px;
+}
+
+.lead-text {
+    font-size: 1.12rem;
+    color: var(--chalk-white) !important;
+    font-weight: 500;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    border-left: 3px solid var(--chalk-yellow);
+    padding-left: 14px;
+}
+
+.narrative-p {
+    color: var(--chalk-muted);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 16px;
+}
+
+.sub-section-title {
+    font-family: var(--font-display);
+    color: var(--chalk-yellow);
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    margin: 24px 0 14px;
+    border-bottom: 1px dashed rgba(255, 209, 102, 0.3);
+    padding-bottom: 6px;
+}
+
+/* Wings Grid */
+.wings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.wing-card {
+    background: var(--board-recessed);
+    border: 1.5px solid rgba(245, 243, 235, 0.16);
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    transition: var(--transition-snappy);
+}
+
+.wing-card:hover {
+    border-color: var(--chalk-mint);
+    background: rgba(110, 231, 183, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+.wing-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.wing-text strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--chalk-white);
+    margin-bottom: 4px;
+}
+
+.wing-text p {
+    font-size: 0.88rem !important;
+    color: var(--chalk-muted) !important;
+    line-height: 1.45 !important;
+}
+
+/* Activities Sequence List */
+.activities-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.activity-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    background: var(--board-recessed);
+    border: 1.5px solid rgba(245, 243, 235, 0.16);
+    border-radius: 12px;
+    transition: var(--transition-snappy);
+}
+
+.activity-item:hover {
+    border-color: var(--chalk-yellow);
+    background: rgba(255, 209, 102, 0.05);
+    transform: translateX(4px);
+}
+
+.activity-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 209, 102, 0.15);
+    border: 2px solid var(--chalk-yellow);
+    color: var(--chalk-yellow);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.activity-content h4 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--chalk-white);
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.activity-content p {
+    font-size: 0.92rem !important;
+    color: var(--chalk-muted) !important;
+    line-height: 1.5 !important;
+}
+
+/* Leadership & Core Team */
+.people-grid-enhanced {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.person-role-tag {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+}
+
+.coordinator-tag {
+    color: var(--chalk-yellow);
+    border: 1.5px solid var(--chalk-yellow);
+    background: rgba(255, 209, 102, 0.12);
+}
+
+.team-tag {
+    color: var(--chalk-mint);
+    border: 1px dashed var(--chalk-mint);
+    background: rgba(110, 231, 183, 0.08);
+}
+
+.coordinator-highlight-card {
+    border-color: rgba(255, 209, 102, 0.6) !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), 0 0 18px rgba(255, 209, 102, 0.15) !important;
+}
+
+.coordinator-highlight-card .person-photo {
+    border-color: var(--chalk-yellow);
+    box-shadow: 0 0 18px rgba(255, 209, 102, 0.35);
+}
+
+.admin-panel-card {
+    padding: 28px;
+}
+
+.admin-panel-desc {
+    color: var(--chalk-muted);
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+}
+
+/* ==========================================================================
+   Club Events Grid & Interactive Accordion Panels
+   ========================================================================== */
+.club-events-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.club-event-card {
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-label {
+    font-family: var(--font-display);
+    color: var(--chalk-yellow) !important;
+    font-size: 13px !important;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 3px 12px;
+    border: 1.5px dashed rgba(255, 209, 102, 0.5);
+    border-radius: 14px;
+    background: rgba(255, 209, 102, 0.08);
+    margin: 0 0 12px !important;
+    align-self: flex-start;
+}
+
+.club-event-card h3 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    color: var(--chalk-white);
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+.club-event-card > p {
+    color: var(--chalk-muted);
+    font-size: 0.98rem;
+}
+
+.event-meta {
+    margin: 16px 0;
+    padding: 14px 18px;
+    background: var(--board-recessed);
+    border: 1.5px solid rgba(245, 243, 235, 0.15);
+    border-radius: 10px;
+}
+
+.event-meta p {
+    margin: 4px 0;
+    font-size: 0.95rem;
+    color: var(--chalk-muted);
+}
+
+.event-meta strong {
+    color: var(--chalk-white);
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+}
+
+.event-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+/* Animated Chalk Entrance for Panels */
+@keyframes chalkSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.99);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.event-registration-panel,
+.withdraw-panel {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #17201a;
+    animation: chalkSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.event-registration-panel {
+    border: 2px dashed rgba(255, 209, 102, 0.4);
+    box-shadow: 0 0 15px rgba(255, 209, 102, 0.1);
+}
+
+.event-registration-panel h4 {
+    font-family: var(--font-display);
+    color: var(--chalk-yellow);
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+}
+
+.withdraw-panel {
+    border: 2px dashed rgba(255, 123, 114, 0.45);
+    box-shadow: 0 0 15px rgba(255, 123, 114, 0.1);
+}
+
+.withdraw-panel h4 {
+    font-family: var(--font-display);
+    color: var(--chalk-coral);
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.event-registration-panel[hidden],
+.withdraw-panel[hidden] {
+    display: none;
+}
+
+/* ==========================================================================
+   FORMS & INPUTS – Chalkboard Style Form Controls
+   ========================================================================== */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    font-family: var(--font-display);
+    color: var(--chalk-white);
+    font-size: 1.15rem;
+    letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select,
+.admin-key-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid rgba(245, 243, 235, 0.25);
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    background: var(--board-recessed);
+    color: var(--chalk-white);
+    transition: border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+
+.form-group input::placeholder,
+.admin-key-input::placeholder {
+    color: rgba(176, 188, 175, 0.6);
+}
+
+.form-group select option {
+    background: #1b241e;
+    color: var(--chalk-white);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.admin-key-input:focus {
+    border-color: var(--chalk-yellow);
+    box-shadow: 0 0 0 3px rgba(255, 209, 102, 0.18), 0 0 14px rgba(255, 209, 102, 0.25);
+    background: #1a221d;
+    outline: none;
+}
+
+.field-help {
+    display: block;
+    margin-top: 6px;
+    color: var(--chalk-muted);
+    font-size: 0.88rem;
+}
+
+.form-message {
+    margin-top: 14px;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 8px 14px;
+    border-radius: 8px;
+}
+
+.success-message {
+    color: var(--chalk-mint);
+    border: 1.5px dashed var(--chalk-mint);
+    background: rgba(110, 231, 183, 0.08);
+    box-shadow: 0 0 12px rgba(110, 231, 183, 0.2);
+}
+
+.error-message {
+    color: var(--chalk-coral);
+    border: 1.5px dashed var(--chalk-coral);
+    background: rgba(255, 123, 114, 0.08);
+    box-shadow: 0 0 12px rgba(255, 123, 114, 0.2);
+}
+
+/* ==========================================================================
+   Admin Coordinator Attendee Section
+   ========================================================================== */
+.admin-row {
+    display: flex;
+    gap: 12px;
+    max-width: 720px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    align-items: center;
+}
+
+.admin-row input,
+.admin-row select {
+    flex: 1;
+    min-width: 200px;
+}
+
+.small-note {
+    color: var(--chalk-muted);
+    font-size: 0.88rem;
+    margin-top: 10px;
+}
+
+.students-card {
+    margin-top: 24px;
+    overflow-x: auto;
+    border: 2px dashed rgba(110, 231, 183, 0.45);
+    background: #161e18;
+}
+
+.students-card h3 {
+    font-family: var(--font-display);
+    color: var(--chalk-mint);
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.student-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    min-width: 620px;
+}
+
+.student-table th,
+.student-table td {
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(245, 243, 235, 0.12);
+}
+
+.student-table th {
+    background: #1d2620;
+    color: var(--chalk-yellow);
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--chalk-yellow);
+}
+
+.student-table tbody tr {
+    transition: background 0.18s ease;
+}
+
+.student-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* ==========================================================================
+   Footer – Chalk Ledge Finish
+   ========================================================================== */
+.site-footer {
+    background: #121814;
+    border-top: 4px solid var(--board-wood);
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    padding: 32px 20px 28px;
+    color: var(--chalk-muted);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    color: var(--chalk-white);
+}
+
+.footer-logo {
+    filter: drop-shadow(0 0 6px rgba(255, 209, 102, 0.45));
+}
+
+.footer-motive {
+    font-size: 0.95rem;
+    color: var(--chalk-muted);
+    line-height: 1.6;
+}
+
+.footer-copy {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--chalk-yellow);
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 900px) {
+    .hero-grid-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .hero-text-side {
+        align-items: center;
+    }
+
+    .hero-quote {
+        padding-left: 0;
+        border-left: none;
+        border-top: 2px dashed var(--chalk-yellow);
+        border-bottom: 2px dashed var(--chalk-yellow);
+        padding: 12px 0;
+        margin: 10px auto 16px;
+        max-width: 520px;
+    }
+
+    .hero-actions,
+    .hero-badges {
+        justify-content: center;
+    }
+
+    .campus-plaque {
+        max-width: 440px;
+        margin: 0 auto;
+    }
+
+    .club-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .people-grid,
+    .people-grid-enhanced {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 14px;
+        padding: 18px 0 10px;
+        border-top: 1.5px dashed rgba(245, 243, 235, 0.2);
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .club-grid,
+    .event-grid,
+    .club-events-grid,
+    .club-narrative-grid,
+    .wings-grid,
+    .people-grid,
+    .people-grid-enhanced,
+    .detail-grid,
+    .about-section,
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .detail-grid,
+    .people-grid,
+    .about-section,
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 60px 0 50px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .club-banner {
+        padding: 24px;
+    }
+
+    .club-banner h1 {
+        font-size: 30px;
+    }
+
+    .admin-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-row input,
+    .admin-row select,
+    .admin-row button {
+        width: 100%;
+    }
+}

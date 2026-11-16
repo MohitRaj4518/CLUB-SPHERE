@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 54" width="54" height="54" fill="none">
+    <defs>
+        <filter id="chalkGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+        <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffd166" stop-opacity="0.3" />
+            <stop offset="100%" stop-color="#18201a" stop-opacity="0" />
+        </radialGradient>
+    </defs>
+    <!-- Outer dashed celestial ring -->
+    <circle cx="27" cy="27" r="23" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="2 3" opacity="0.4" />
+    
+    <!-- Primary Orbit Ring 1 (Yellow Chalk Orbit) -->
+    <ellipse cx="27" cy="27" rx="23" ry="11" stroke="#ffd166" stroke-width="2" stroke-dasharray="5 3" transform="rotate(-30 27 27)" filter="url(#chalkGlow)" />
+    
+    <!-- Primary Orbit Ring 2 (Mint Chalk Orbit) -->
+    <ellipse cx="27" cy="27" rx="23" ry="11" stroke="#6ee7b7" stroke-width="2" stroke-dasharray="4 3" transform="rotate(35 27 27)" filter="url(#chalkGlow)" />
+    
+    <!-- Central Community Sphere Core -->
+    <circle cx="27" cy="27" r="10" fill="#1b241e" stroke="#f5f3eb" stroke-width="2.2" filter="url(#chalkGlow)" />
+    <circle cx="27" cy="27" r="8" fill="url(#coreGlow)" />
+    
+    <!-- Central Guiding Star / Campus Passion Compass -->
+    <path d="M27 19.5 L28.8 24.5 L33.5 27 L28.8 29.5 L27 34.5 L25.2 29.5 L20.5 27 L25.2 24.5 Z" fill="#ffd166" filter="url(#chalkGlow)" />
+    <circle cx="27" cy="27" r="1.5" fill="#f5f3eb" />
+    
+    <!-- 5 Orbiting Campus Passion Nodes (Tech, Sports, Gaming, Cultural, Cinema) -->
+    <!-- Tech (Mint) -->
+    <circle cx="10" cy="19" r="3.2" fill="#6ee7b7" stroke="#18201a" stroke-width="1.5" />
+    <!-- Sports (Coral) -->
+    <circle cx="44" cy="21" r="3.2" fill="#ff7b72" stroke="#18201a" stroke-width="1.5" />
+    <!-- Gaming (Sky Blue) -->
+    <circle cx="39" cy="39" r="3.2" fill="#93c5fd" stroke="#18201a" stroke-width="1.5" />
+    <!-- Cultural (Yellow) -->
+    <circle cx="14" cy="38" r="3.2" fill="#ffd166" stroke="#18201a" stroke-width="1.5" />
+    <!-- Cinema (Lavender) -->
+    <circle cx="27" cy="6" r="3.2" fill="#c4b5fd" stroke="#18201a" stroke-width="1.5" />
+</svg>
+

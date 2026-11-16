@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ClubSphere – Tech Stack 4-Person Presentation Distribution</title>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 14mm 16mm 14mm 16mm;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #1e293b;
+            background: #ffffff;
+            line-height: 1.5;
+            font-size: 13px;
+        }
+
+        .header {
+            border-bottom: 2px solid #0f172a;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .header-title h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-title p {
+            color: #475569;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .header-badge {
+            text-align: right;
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .header-badge .pill {
+            display: inline-block;
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        /* Overview Matrix Table */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
+
+        .matrix-table th, .matrix-table td {
+            border: 1px solid #cbd5e1;
+            padding: 8px 10px;
+            text-align: left;
+        }
+
+        .matrix-table th {
+            background: #f1f5f9;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .matrix-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 11px;
+        }
+
+        .badge-p1 { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+        .badge-p2 { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+        .badge-p3 { background: #e0e7ff; color: #3730a3; border: 1px solid #c7d2fe; }
+        .badge-p4 { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+
+        /* Person Cards */
+        .person-card {
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            background: #ffffff;
+            page-break-inside: avoid;
+        }
+
+        .person-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .person-header h2 {
+            font-size: 16px;
+            font-weight: 800;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .person-header .role-tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
+        .tech-list {
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+
+        .tech-list strong {
+            color: #0f172a;
+        }
+
+        .tech-pill {
+            display: inline-block;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            font-size: 11px;
+            margin-right: 4px;
+            margin-bottom: 3px;
+        }
+
+        .key-points {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        .key-points li {
+            position: relative;
+            padding-left: 14px;
+            margin-bottom: 4px;
+            font-size: 12px;
+            color: #334155;
+        }
+
+        .key-points li::before {
+            content: "•";
+            color: #2563eb;
+            font-weight: bold;
+            font-size: 14px;
+            position: absolute;
+            left: 0;
+            top: -1px;
+        }
+
+        .script-box {
+            background: #f8fafc;
+            border-left: 3px solid #0f172a;
+            padding: 8px 12px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 8px;
+            font-size: 11.5px;
+            color: #1e293b;
+            font-style: italic;
+        }
+
+        .script-box strong {
+            font-style: normal;
+            color: #0f172a;
+            display: block;
+            margin-bottom: 2px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .viva-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 6px;
+            padding: 7px 10px;
+            font-size: 11.5px;
+            color: #92400e;
+        }
+
+        .viva-box strong {
+            color: #78350f;
+        }
+
+        .footer {
+            margin-top: 16px;
+            padding-top: 10px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: OVERVIEW & PERSON 1, PERSON 2 -->
+    <header class="header">
+        <div class="header-title">
+            <h1>🎓 ClubSphere – Presentation Guide</h1>
+            <p>IIIT Kota College Clubs &amp; Events Management Portal • 4-Member Tech Stack Distribution</p>
+        </div>
+        <div class="header-badge">
+            <span class="pill">4 Team Members</span>
+            <div>Full-Stack Division</div>
+        </div>
+    </header>
+
+    <!-- Overview Matrix -->
+    <table class="matrix-table">
+        <thead>
+            <tr>
+                <th style="width: 18%;">Member</th>
+                <th style="width: 27%;">Domain / Layer</th>
+                <th style="width: 30%;">Core Tech Stack</th>
+                <th style="width: 25%;">Key Files Handled</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Person 1</strong></td>
+                <td>Frontend UI &amp; Styling System</td>
+                <td><span class="badge badge-p1">HTML5 / CSS3 / SVG</span></td>
+                <td><code>style.css</code>, <code>index.html</code>, <code>logo.svg</code></td>
+            </tr>
+            <tr>
+                <td><strong>Person 2</strong></td>
+                <td>Client-Side Logic &amp; Web APIs</td>
+                <td><span class="badge badge-p2">Vanilla JS (ES6+)</span></td>
+                <td><code>club.js</code>, <code>script.js</code></td>
+            </tr>
+            <tr>
+                <td><strong>Person 3</strong></td>
+                <td>Backend Server &amp; RESTful API</td>
+                <td><span class="badge badge-p3">Node.js / Express.js</span></td>
+                <td><code>server.js</code>, <code>routes/eventRegistrations.js</code></td>
+            </tr>
+            <tr>
+                <td><strong>Person 4</strong></td>
+                <td>Database, Indexing &amp; Security</td>
+                <td><span class="badge badge-p4">MongoDB / Mongoose ODM</span></td>
+                <td><code>models/eventRegistration.js</code>, <code>config.js</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- PERSON 1 -->
+    <section class="person-card">
+        <div class="person-header">
+            <h2>Person 1: Frontend Presentation &amp; Design System</h2>
+            <span class="role-tag badge-p1">HTML5 • CSS3 • SVG</span>
+        </div>
+        <div class="tech-list">
+            <strong>Technologies Covered:</strong>
+            <span class="tech-pill">Semantic HTML5</span>
+            <span class="tech-pill">CSS Custom Properties</span>
+            <span class="tech-pill">CSS Grid &amp; Flexbox</span>
+            <span class="tech-pill">Keyframe Animations</span>
+            <span class="tech-pill">SVG Vector Graphics</span>
+            <span class="tech-pill">Google Fonts</span>
+        </div>
+        <ul class="key-points">
+            <li><strong>Chalkboard Art Aesthetic:</strong> Crafted a dark forest slate theme (<code>#18201a</code>) with subtle multi-layer radial chalk dust gradients and warm classroom wood trim (<code>#5a3825</code>).</li>
+            <li><strong>Tactile Button System:</strong> Designed hand-drawn borders (<code>border-radius: 255px 15px...</code>), 3D tactile offset border shadows (<code>0 3px 0 &lt;color&gt;</code>) that depress on click, and glowing chalk hover blooms (<code>0 0 24px</code>).</li>
+            <li><strong>Arched Campus Plaque:</strong> Built the hero showcase framing the IIIT Kota permanent campus building with vintage chalk washi-tape and 3D hover tilt.</li>
+            <li><strong>Responsive Reflow:</strong> Clean media queries at <code>900px</code> and <code>768px</code> for adaptive multi-column grids and mobile navigation drawer.</li>
+        </ul>
+        <div class="script-box">
+            <strong>Presentation Speaking Script (30 seconds):</strong>
+            "I am presenting the Frontend UI layer of ClubSphere. We chose pure HTML5 and CSS3 without heavy UI frameworks to guarantee instant load times. I implemented our custom 'Chalkboard Art' theme using CSS Custom Properties, CSS Grid for responsive cards, and keyframe animations for smooth form accordions. Every button features tactile 3D offset shadows and hover chalk glows that elevate user experience."
+        </div>
+        <div class="viva-box">
+            <strong>Probable Viva Question:</strong> How did you implement smooth transitions without external animation libraries?<br>
+            <strong>Answer:</strong> Using native CSS3 transitions with <code>cubic-bezier</code> timing curves for tactile bounce effects, and custom <code>@keyframes chalkSlideIn</code> for accordion forms.
+        </div>
+    </section>
+
+    <!-- PERSON 2 -->
+    <section class="person-card">
+        <div class="person-header">
+            <h2>Person 2: Client-Side Logic &amp; Browser APIs</h2>
+            <span class="role-tag badge-p2">Vanilla JavaScript (ES6+)</span>
+        </div>
+        <div class="tech-list">
+            <strong>Technologies Covered:</strong>
+            <span class="tech-pill">JavaScript ES6+</span>
+            <span class="tech-pill">URLSearchParams API</span>
+            <span class="tech-pill">DOM Manipulation</span>
+            <span class="tech-pill">Fetch API (async/await)</span>
+            <span class="tech-pill">FormData API</span>
+            <span class="tech-pill">RegExp Validation</span>
+        </div>
+        <ul class="key-points">
+            <li><strong>Dynamic URL Routing:</strong> Uses the native <code>URLSearchParams</code> API to parse <code>?club=&lt;id&gt;</code> and dynamically render all 5 distinct societies through a single template.</li>
+            <li><strong>Modular DOM Card Generation:</strong> Programmatically constructs club banners, 4 specialized wings per society, numbered activity lists, and core team member cards.</li>
+            <li><strong>Mutually-Exclusive Form Accordions:</strong> Event listeners ensure opening the "Register" accordion automatically collapses the "Withdraw" panel to prevent interface clutter.</li>
+            <li><strong>Asynchronous Network Integration:</strong> Uses native <code>fetch()</code> with <code>async/await</code> to dispatch <code>POST</code> and <code>DELETE</code> payloads, giving instant visual feedback in <code>.form-message</code>.</li>
+        </ul>
+        <div class="script-box">
+            <strong>Presentation Speaking Script (30 seconds):</strong>
+            "I handled the Client-Side Logic using modern Vanilla JavaScript. Using the browser's <code>URLSearchParams</code> API, a single template dynamically renders all 5 college clubs. I used the native <code>Fetch API</code> with <code>async/await</code> to communicate with our server asynchronously. I also built the interactive form accordions that validate student inputs and handle both registration and self-service withdrawals in real time."
+        </div>
+        <div class="viva-box">
+            <strong>Probable Viva Question:</strong> How does the client validate inputs before sending them to the backend?<br>
+            <strong>Answer:</strong> Two-layer validation: HTML5 pattern regex checks format on input, and JavaScript validates field presence before <code>fetch()</code> dispatches the payload.
+        </div>
+    </section>
+
+    <!-- PAGE BREAK FOR CLEAN PRINTING -->
+    <div class="page-break"></div>
+
+    <header class="header">
+        <div class="header-title">
+            <h1>🎓 ClubSphere – Presentation Guide (Cont.)</h1>
+            <p>IIIT Kota College Clubs &amp; Events Management Portal • Server, Database &amp; Security</p>
+        </div>
+        <div class="header-badge">
+            <span class="pill">Page 2</span>
+            <div>Backend &amp; Persistence</div>
+        </div>
+    </header>
+
+    <!-- PERSON 3 -->
+    <section class="person-card">
+        <div class="person-header">
+            <h2>Person 3: Backend Server &amp; RESTful API Architecture</h2>
+            <span class="role-tag badge-p3">Node.js • Express.js 4</span>
+        </div>
+        <div class="tech-list">
+            <strong>Technologies Covered:</strong>
+            <span class="tech-pill">Node.js Runtime (v24)</span>
+            <span class="tech-pill">Express.js (v4.21)</span>
+            <span class="tech-pill">express.json()</span>
+            <span class="tech-pill">express.static()</span>
+            <span class="tech-pill">RESTful Routing</span>
+            <span class="tech-pill">Error Middleware</span>
+        </div>
+        <ul class="key-points">
+            <li><strong>Server Initialization (<code>server.js</code>):</strong> Mounts static file serving for the frontend, JSON request parsing, and establishes the MongoDB connection before listening on port <code>5001</code>.</li>
+            <li><strong>RESTful API Design (<code>routes/eventRegistrations.js</code>):</strong>
+                <ul>
+                    <li><code>POST /api/events/:eventId</code> → Validates input against whitelists and saves registration.</li>
+                    <li><code>DELETE /api/events/:eventId</code> → Finds and deletes registration matching roll number and email.</li>
+                    <li><code>GET /api/events/:eventId</code> → Protected coordinator route returning attendee counts and roster.</li>
+                    <li><code>GET /api/health</code> → Operational heartbeat monitor returning status 200.</li>
+                </ul>
+            </li>
+            <li><strong>Global Error Handling Middleware:</strong> Intercepts malformed JSON payloads (<code>SyntaxError</code>) returning HTTP 400 Bad Request instead of allowing unhandled server crashes.</li>
+            <li><strong>Whitelisting &amp; Validation:</strong> Strictly enforces input parameters against 15 predefined campus event IDs across the 5 societies.</li>
+        </ul>
+        <div class="script-box">
+            <strong>Presentation Speaking Script (30 seconds):</strong>
+            "I am covering the Backend layer powered by Node.js and Express.js. Our server serves the static frontend assets and exposes clean RESTful API endpoints for event operations. I implemented JSON body parsing, input whitelisting for our 15 campus events, and global error middleware to ensure malformed requests never crash the server. The architecture strictly follows REST principles with standard HTTP status codes like 201 Created, 400 Bad Request, and 409 Conflict."
+        </div>
+        <div class="viva-box">
+            <strong>Probable Viva Question:</strong> Why did you choose Express.js for the routing layer?<br>
+            <strong>Answer:</strong> Express provides minimalist, unopinionated routing, built-in static asset serving, and straightforward middleware chaining for JSON parsing and error management.
+        </div>
+    </section>
+
+    <!-- PERSON 4 -->
+    <section class="person-card">
+        <div class="person-header">
+            <h2>Person 4: Database Layer, Data Modeling &amp; Security</h2>
+            <span class="role-tag badge-p4">MongoDB • Mongoose ODM • Security</span>
+        </div>
+        <div class="tech-list">
+            <strong>Technologies Covered:</strong>
+            <span class="tech-pill">MongoDB Community Server</span>
+            <span class="tech-pill">Mongoose ODM (v8.9)</span>
+            <span class="tech-pill">Compound Unique Indexes</span>
+            <span class="tech-pill">Data Normalization</span>
+            <span class="tech-pill">Regex Validation</span>
+            <span class="tech-pill">Header Auth (x-admin-key)</span>
+        </div>
+        <ul class="key-points">
+            <li><strong>Document Schema (<code>models/eventRegistration.js</code>):</strong> Mongoose schema defining <code>eventId</code>, <code>eventName</code>, <code>club</code>, <code>name</code>, <code>rollNumber</code>, <code>branch</code>, <code>year</code>, <code>email</code>, and <code>createdAt</code>.</li>
+            <li><strong>Compound Unique Indexing:</strong> <code>{ eventId: 1, rollNumber: 1 }</code>. Mathematically guarantees a student can only register once per specific event, while freely participating across different club events.</li>
+            <li><strong>Data Normalization:</strong> Auto-uppercases roll numbers (<code>uppercase: true, trim: true</code>) and lowercases emails to prevent case-sensitive duplicate registrations and withdrawal failures.</li>
+            <li><strong>Security &amp; Coordinator Access:</strong> Secures attendee lists with custom HTTP header authentication (<code>x-admin-key</code>), querying records via <code>.lean()</code> for optimal read performance.</li>
+            <li><strong>Email Domain Verification:</strong> Strict server-side regex enforces official IIIT Kota email domain (<code>/^[a-z0-9._%+-]+@iiitkota\.ac\.in$/</code>).</li>
+        </ul>
+        <div class="script-box">
+            <strong>Presentation Speaking Script (30 seconds):</strong>
+            "I am presenting the Database and Security layer. We use MongoDB with Mongoose ODM to persist registrations. The standout engineering feature is our compound unique index on <code>{ eventId: 1, rollNumber: 1 }</code>—this mathematically guarantees that a student cannot register twice for the same event while allowing multi-event participation. We normalize roll numbers to uppercase, enforce official <code>@iiitkota.ac.in</code> email regex validation, and secure the coordinator attendee roster with custom header authentication."
+        </div>
+        <div class="viva-box">
+            <strong>Probable Viva Question:</strong> How does MongoDB handle double-registration attempts?<br>
+            <strong>Answer:</strong> When MongoDB detects a duplicate <code>{ eventId, rollNumber }</code> key, it throws error code <code>11000</code>, which our Express route intercepts to return an HTTP <code>409 Conflict</code>.
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div><strong>ClubSphere Team Guide</strong> • Presentation Time: ~10–12 minutes total (2.5–3 min per member)</div>
+        <div>Local Server: <code>http://localhost:5001</code></div>
+    </footer>
+
+</body>
+</html>
+
